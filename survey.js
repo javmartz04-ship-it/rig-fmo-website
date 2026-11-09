@@ -85,7 +85,7 @@
     fill.style.width = '100%';
     // book.html only opens for someone holding this pass.
     try { localStorage.setItem('rig_applied', String(Date.now())); } catch (_) { window.name = 'rig_applied'; }
-    location.href = 'book.html';
+    location.href = '/book';
   }
 
   // Coming back from the booking page with the browser's Back button.

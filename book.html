@@ -12,7 +12,7 @@ window.rigPass = (function () {
   try { var t = Number(localStorage.getItem('rig_applied')); ok = t > 0 && Date.now() - t < DAYS * 864e5; } catch (e) {}
   return ok || window.name === 'rig_applied';
 })();
-if (!window.rigPass) location.replace('index.html');
+if (!window.rigPass) location.replace('/');
 </script>
 <link rel="icon" href="assets/favicon.png?v=2">
 <link rel="apple-touch-icon" href="assets/favicon.png?v=2">
