@@ -1032,3 +1032,13 @@ em.e{color:var(--gold-ink)}
   .sc-g{grid-template-columns:1fr}
   .sc-g li,.sc-g li:first-child,.sc-g li:last-child{padding:22px 0;border-right:0;border-bottom:1px solid var(--line)}
 }
+
+/* Why Us: video beside the headline */
+.wy-h-g{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(40px,5vw,88px);align-items:center}
+.inner .wy-h h1{font-size:clamp(44px,4.4vw,72px)}
+.wy-h .vsl{box-shadow:0 0 0 1px var(--line-d2),0 40px 90px -30px rgba(0,0,0,.9)}
+.wy-h .vsl-go{background:radial-gradient(60% 75% at 50% 50%,rgba(0,0,0,.34),rgba(0,0,0,.08))}
+@media (max-width:1000px){.wy-h-g{grid-template-columns:1fr}}
+.wy-h .vsl-go{align-items:flex-start;justify-content:flex-end;gap:12px;padding:0 0 8% 6%;background:linear-gradient(90deg,rgba(0,0,0,.32),transparent 52%)}
+.wy-h .vsl-p{width:clamp(72px,6.8vw,104px)}
+@media (max-width:640px){.wy-h .vsl-go{gap:7px;padding:0 0 6% 5%}.wy-h .vsl-p{width:58px}.wy-h .vsl-l{font-size:13px}.wy-h .vsl-l small{font-size:11px;padding:2px 7px}}
