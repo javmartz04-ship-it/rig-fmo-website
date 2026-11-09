@@ -1,5 +1,5 @@
 (() => {
-  const WEBHOOK = ''; // GHL inbound webhook for applications. Empty = preview, nothing is sent.
+  const WEBHOOK = 'https://services.leadconnectorhq.com/hooks/TmgbRF4QVy9W3Iy51EJF/webhook-trigger/abcb6d79-aa12-41dd-a619-a0d3804637ed'; // GHL inbound webhook for applications.
   const ARROW = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 8h11M9 4l4 4-4 4"/></svg>';
   const CTA = 'Apply To Work With Us';
 
@@ -77,7 +77,10 @@
   async function submit(f) {
     if (locked) return; locked = true;
     f.querySelector('.btn').disabled = true;
-    if (WEBHOOK) { try { await fetch(WEBHOOK, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ...answers, source: 'website_application' }) }); } catch (_) {} }
+    const [first_name, ...rest] = (answers.full_name || '').trim().split(/\s+/);
+    // keepalive lets the send finish even if we move on to the calendar first. A slow webhook never holds up booking.
+    const sent = fetch(WEBHOOK, { method: 'POST', keepalive: true, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ...answers, first_name, last_name: rest.join(' '), source: 'website_application' }) }).catch(() => {});
+    await Promise.race([sent, new Promise(r => setTimeout(r, 2500))]);
     finished = true;
     fill.style.width = '100%';
     // book.html only opens for someone holding this pass.
