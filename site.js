@@ -1,7 +1,5 @@
 (() => {
   const $ = (s, c = document) => c.querySelector(s), $$ = (s, c = document) => [...c.querySelectorAll(s)];
-  const WEBHOOK = ''; // GHL inbound webhook for agent applications. Empty = preview, nothing is sent.
-  const THANKS = '';  // Optional thank-you URL.
 
   // Reveal
   const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -8% 0px' });
@@ -28,33 +26,33 @@
   burger.addEventListener('click', () => setMenu(!root.classList.contains('open')));
   $$('#sheet a').forEach(a => a.addEventListener('click', () => setMenu(false)));
 
-  // Rail
-  const rail = $('#rail'), step = () => $('.t', rail).offsetWidth + 18;
-  $('#next').addEventListener('click', () => rail.scrollBy({ left: step(), behavior: 'smooth' }));
-  $('#prev').addEventListener('click', () => rail.scrollBy({ left: -step(), behavior: 'smooth' }));
+  // Community video: big play button, then native controls
+  const vsl = $('#vsl');
+  if (vsl) {
+    const v = $('#vslV');
+    $('#vslGo').addEventListener('click', () => { vsl.classList.add('on'); v.controls = true; v.play().catch(() => {}); v.focus(); });
+    v.addEventListener('ended', () => { v.controls = false; vsl.classList.remove('on'); v.load(); });
+  }
 
   // Video
   const modal = $('#modal'), player = $('#player'); let last;
-  const close = () => { player.pause(); player.removeAttribute('src'); player.innerHTML = ''; player.load(); modal.hidden = true; document.body.style.overflow = ''; last && last.focus(); };
+  const close = () => { const yt = $('iframe', modal); if (yt) { yt.remove(); player.hidden = false; document.dispatchEvent(new Event('talkclose')); } player.pause(); player.removeAttribute('src'); player.innerHTML = ''; player.load(); modal.hidden = true; document.body.style.overflow = ''; last && last.focus(); };
   $$('[data-video]').forEach(b => b.addEventListener('click', () => {
     last = b; const n = b.dataset.video;
     player.innerHTML = `<track default kind="captions" srclang="en" label="English" src="assets/video/${n}.vtt">`;
     player.src = `assets/video/${n}.mp4`; player.poster = `assets/video/${n}.jpg`;
     modal.hidden = false; document.body.style.overflow = 'hidden'; player.play().catch(() => {}); $('#x').focus();
   }));
+  $$('[data-talk]').forEach(b => b.addEventListener('click', () => {
+    last = b; player.hidden = true;
+    const f = document.createElement('iframe');
+    f.src = `https://www.youtube.com/embed/${b.dataset.talk}?autoplay=1&rel=0&playsinline=1`;
+    f.title = 'Johnny Brock at MedicareCon'; f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen'; f.allowFullscreen = true;
+    modal.appendChild(f); modal.hidden = false; document.body.style.overflow = 'hidden'; $('#x').focus();
+    document.dispatchEvent(new Event('talkopen'));
+  }));
   $('#x').addEventListener('click', close);
   modal.addEventListener('click', e => { if (e.target === modal) close(); });
   addEventListener('keydown', e => { if (e.key === 'Escape') { if (!modal.hidden) close(); setMenu(false); } });
 
-  // Application
-  const form = $('#form'), err = $('#err');
-  form.addEventListener('submit', async e => {
-    e.preventDefault();
-    let good = true;
-    $$('input,select', form).forEach(f => { const ok = f.checkValidity() && f.value.trim() !== ''; f.classList.toggle('bad', !ok); f.setAttribute('aria-invalid', !ok); if (!ok) good = false; });
-    err.hidden = good; if (!good) { $('.bad', form).focus(); return; }
-    if (WEBHOOK) { try { await fetch(WEBHOOK, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(Object.fromEntries(new FormData(form))) }); } catch (_) {} }
-    if (THANKS) { location.href = THANKS; return; }
-    form.hidden = true; const ok = $('#ok'); ok.hidden = false; ok.focus();
-  });
 })();
