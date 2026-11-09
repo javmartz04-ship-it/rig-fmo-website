@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Book Your Strategy Call | The Real Insurance Group</title>
+<meta name="robots" content="noindex,nofollow">
+<script>
+/* Only people who just submitted the survey get this page. survey.js sets the pass. */
+window.rigPass = (function () {
+  var DAYS = 30, ok = false;
+  try { var t = Number(localStorage.getItem('rig_applied')); ok = t > 0 && Date.now() - t < DAYS * 864e5; } catch (e) {}
+  return ok || window.name === 'rig_applied';
+})();
+if (!window.rigPass) location.replace('index.html');
+</script>
+<link rel="icon" href="assets/favicon.png?v=2">
+<link rel="apple-touch-icon" href="assets/favicon.png?v=2">
+<meta name="theme-color" content="#000000">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=Playfair+Display:ital,wght@1,400&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="assets/johnny-steeple-color.webp">
+<link rel="stylesheet" href="styles.css?v=47">
+<script async src="https://javmartz04-ship-it.github.io/brandridge-tracker/t.js" data-client="johnny" data-name="Johnny" data-funnel="Main Website"></script>
+<style>
+html,body{background:#000}
+.call{display:grid;grid-template-columns:minmax(0,43fr) minmax(0,57fr);min-height:100svh}
+.call-l{position:sticky;top:0;height:100svh;overflow:hidden;background:#000;color:#fff;padding:clamp(24px,2.5vw,38px) clamp(28px,3.6vw,58px)}
+.call-logo{width:clamp(104px,8vw,124px);height:auto}
+.call-h{position:relative;z-index:1;margin-top:clamp(24px,5.4svh,58px)}
+.call-e{display:flex;align-items:center;gap:13px;font-size:13.5px;font-weight:600;letter-spacing:.02em;color:var(--on-d)}
+.call-e::before{content:"";width:30px;height:1px;background:var(--gold)}
+.call h1{margin-top:clamp(12px,1.9svh,18px);font-size:clamp(34px,min(3.25vw,6.2svh),54px);line-height:1.04;color:#fff;white-space:nowrap}
+.call h1 em.e{display:block;color:var(--gold)}
+.call-s{margin-top:clamp(12px,1.9svh,18px);max-width:25em;font-size:clamp(16px,1.25vw,18px);line-height:1.5;color:var(--on-d)}
+.call-p{position:absolute;right:0;bottom:0;height:min(57svh,92%);width:auto;max-width:none;transform:translateX(7%)}
+.call-l::after{content:"";position:absolute;left:0;right:0;bottom:0;height:24%;background:linear-gradient(to top,rgba(0,0,0,.72),transparent);pointer-events:none}
+.call-n{position:absolute;z-index:2;left:clamp(28px,3.6vw,58px);bottom:clamp(24px,2.5vw,38px);font-size:13.5px;line-height:1.4;color:var(--on-d)}
+.call-n b{display:block;font-size:17px;font-weight:700;color:#fff}
+.call-r{display:flex;flex-direction:column;min-height:100svh;background:#fff;padding:clamp(18px,2.2vw,34px) clamp(18px,3.2vw,54px) 0}
+.call-c{position:relative;width:100%;max-width:860px;margin:0 auto;min-height:640px}
+.call-c iframe{position:relative;display:block;width:100%;min-height:640px;border:0;overflow:hidden}
+.call-w{position:absolute;left:0;right:0;top:220px;text-align:center;font-size:15px;color:var(--muted);transition:opacity .3s}
+.call-c.on .call-w{opacity:0}
+.call-f{width:100%;max-width:860px;margin:auto auto 0;padding:30px 0 24px;border-top:1px solid var(--line);font-size:12.5px;line-height:1.6;color:var(--muted)}
+.call-c + .call-f{margin-top:28px}
+.call-l > *{animation:callIn .9s var(--ease) both}
+.call-p{animation-name:callP;animation-duration:1.2s;animation-delay:.08s}
+@keyframes callIn{from{opacity:0;transform:translateY(12px)}}
+@keyframes callP{from{opacity:0;transform:translateX(7%) translateY(18px)}}
+@media (prefers-reduced-motion:reduce){.call-l > *{animation:none}}
+@media (max-width:1000px){
+  .call{display:block}
+  .call-l{position:relative;height:auto;padding:22px 20px 28px}
+  .call-l::after,.call-p,.call-n{display:none}
+  .call-h{margin-top:20px}
+  .call h1{font-size:clamp(35px,9.6vw,58px);white-space:normal;text-wrap:balance}
+  .call-r{min-height:0;padding:14px 12px 0}
+  .call-c,.call-c iframe{min-height:720px}
+  .call-f{padding:24px 8px}
+}
+</style>
+</head>
+<body>
+<main class="call">
+  <aside class="call-l dark">
+    <img class="call-logo" src="assets/rig-logo-nav.webp" width="392" height="208" alt="The Real Insurance Group">
+    <header class="call-h">
+      <p class="call-e">Application Received</p>
+      <h1>Book Your Strategy Call <em class="e">With Johnny Brock.</em></h1>
+      <p class="call-s">Thirty minutes, one on one, on your business and where you want to take it.</p>
+    </header>
+    <img class="call-p" src="assets/johnny-steeple-color.webp" width="1544" height="1398" alt="Johnny Brock" fetchpriority="high">
+    <p class="call-n"><b>Johnny Brock</b>Founder And CEO</p>
+  </aside>
+  <div class="call-r">
+    <section class="call-c" id="cal" aria-label="Choose a time for your call"><p class="call-w">Opening Johnny&rsquo;s Calendar</p></section>
+    <footer class="call-f">
+      <p>For licensed insurance professionals only. Not connected with or endorsed by the U.S. government or the federal Medicare program.</p>
+      <p>&copy; 2026 The Real Insurance Group</p>
+    </footer>
+  </div>
+</main>
+<script>
+/* The calendar is only added for people who passed the check above. */
+if (window.rigPass) {
+  var CALENDAR = 'BLi0FZlqwBSaLHV8opKb';
+  var f = document.createElement('iframe');
+  f.src = 'https://link.realinsurancecrm.com/widget/booking/' + CALENDAR;
+  f.id = CALENDAR + '_booking';
+  f.title = 'Choose a time for your call';
+  f.scrolling = 'no';
+  f.addEventListener('load', function () { document.getElementById('cal').classList.add('on'); });
+  document.getElementById('cal').appendChild(f);
+  var s = document.createElement('script');
+  s.src = 'https://link.realinsurancecrm.com/js/form_embed.js';
+  s.async = true;
+  document.body.appendChild(s);
+}
+</script>
+</body>
+</html>

@@ -1,7 +1,6 @@
 (() => {
   const WEBHOOK = ''; // GHL inbound webhook for applications. Empty = preview, nothing is sent.
   const ARROW = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 8h11M9 4l4 4-4 4"/></svg>';
-  const CHECK = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 8.5l3.2 3.2L13 5"/></svg>';
   const CTA = 'Apply To Work With Us';
 
   const fmtPhone = v => { const d = v.replace(/\D/g, '').slice(0, 10); if (d.length < 4) return d; if (d.length < 7) return `(${d.slice(0, 3)}) ${d.slice(3)}`; return `(${d.slice(0, 3)}) ${d.slice(3, 6)}-${d.slice(6)}`; };
@@ -16,7 +15,7 @@
       options: ['Under $100K', '$100K To $250K', '$250K To $500K', '$500K To $1M', 'Over $1M'] },
     { id: 'biggest_challenge', q: 'What’s Holding You Back The Most?', hint: 'Pick the one that costs you the most.',
       options: a => ['Not Enough Leads', 'Leads That Don’t Close', 'No Time To Run Marketing', ...(a.team_size === 'Just Me' ? [] : ['My Team Isn’t Producing']), 'Something Else'] },
-    { q: 'Last Part. Who Are We Talking To?', hint: 'We’ll review your application and reach out to you directly.',
+    { q: 'Last Part. Who Are We Talking To?', hint: 'Next, you’ll pick a time for your call.',
       fields: [
         { id: 'full_name', label: 'Full Name', type: 'text', auto: 'name', ph: 'Jordan Rivera',
           check: v => v.trim().length >= 2 ? '' : 'Please enter your full name.' },
@@ -81,10 +80,13 @@
     if (WEBHOOK) { try { await fetch(WEBHOOK, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ...answers, source: 'website_application' }) }); } catch (_) {} }
     finished = true;
     fill.style.width = '100%';
-    stage.innerHTML = `<div class="step done"><div class="seal">${CHECK}</div><h2 class="q" tabindex="-1">Thank You For Applying.</h2><p class="help">We’ve received your application for review.</p><button type="button" class="btn" id="svDone">Close<i>${ARROW}</i></button></div>`;
-    $('svDone').addEventListener('click', close);
-    stage.querySelector('.q').focus({ preventScroll: true });
+    // book.html only opens for someone holding this pass.
+    try { localStorage.setItem('rig_applied', String(Date.now())); } catch (_) { window.name = 'rig_applied'; }
+    location.href = 'book.html';
   }
+
+  // Coming back from the booking page with the browser's Back button.
+  addEventListener('pageshow', e => { if (e.persisted && finished) close(); });
 
   function open(e) {
     e.preventDefault();
