@@ -1256,3 +1256,8 @@ em.e{color:var(--gold-ink)}
   .lib-pg li{scroll-snap-align:start}
   .lib-d .rz-c .btn{width:100%;justify-content:space-between}
 }
+
+/* v32. Community video play button was too big (Javier). */
+.lib-p .vsl-p{width:clamp(58px,5vw,76px)}
+.lib-p .vsl-go{gap:12px}
+.lib-p .vsl-l{font-size:clamp(13.5px,1vw,15px)}
