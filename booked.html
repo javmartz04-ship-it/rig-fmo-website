@@ -21,7 +21,7 @@ try { if (window.top !== window.self && window.top.location.origin === location.
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=Playfair+Display:ital,wght@1,400&display=swap" rel="stylesheet">
 <link rel="preload" as="image" href="assets/booked-poster.webp">
-<link rel="stylesheet" href="styles.css?v=47">
+<link rel="stylesheet" href="styles.css?v=48">
 <script async src="https://javmartz04-ship-it.github.io/brandridge-tracker/t.js" data-client="johnny" data-name="Johnny" data-funnel="Main Website"></script>
 <style>
 html,body{background:#000}
@@ -37,7 +37,7 @@ html,body{background:#000}
 .tk-s{max-width:640px;margin:16px auto 0;font-size:clamp(16px,1.25vw,19px);line-height:1.5;color:var(--on-d)}
 .tk-g{display:grid;grid-template-columns:minmax(0,1fr) clamp(300px,27vw,380px);gap:clamp(16px,1.6vw,24px);margin-top:clamp(26px,2.6vw,38px);align-items:start}
 .tk .vsl{box-shadow:0 0 0 1px var(--line-d2),0 40px 90px -30px rgba(0,0,0,.9)}
-.tk .vsl-go{align-items:center;justify-content:center;gap:14px;padding:0 0 0 64%;background:linear-gradient(270deg,rgba(0,0,0,.26),transparent 46%)}
+.tk .vsl-go{align-items:center;justify-content:center;gap:14px;padding:0;background:radial-gradient(60% 75% at 50% 50%,rgba(0,0,0,.3),rgba(0,0,0,.06))}
 .tk .vsl-p{width:clamp(70px,6.4vw,100px)}
 .tk-ch{display:flex;flex-direction:column;height:0;min-height:100%;background:#0b0b0b;border:1px solid var(--line-d);border-radius:var(--r)}
 .tk-ch h2{padding:16px 18px 14px;border-bottom:1px solid var(--line-d);font-size:13.5px;font-weight:600;letter-spacing:.02em;line-height:1.3;color:var(--on-d)}
@@ -66,10 +66,11 @@ html,body{background:#000}
   .tk-ch ol{overflow:visible}
   .tk-ch button{min-height:46px}
   .tk-b-in{grid-template-columns:1fr}
+  .tk-b-in > div{display:contents}
+  .tk-m{order:3;margin-top:-8px;padding-top:0;border-top:0}
 }
 @media (max-width:640px){
-  .tk-e::after{display:none}
-  .tk .vsl-go{gap:7px;padding:0 0 0 62%}
+  .tk .vsl-go{gap:7px}
   .tk .vsl-p{width:56px}
   .tk .vsl-l{display:none}
   .tk-ch button{padding:6px 14px;font-size:14px}
@@ -138,9 +139,17 @@ html,body{background:#000}
   ol.innerHTML = CH.map(function (c, n) { return '<li><button type="button" data-t="' + c[0] + '"><i>' + String(n + 1).padStart(2, '0') + '</i><span>' + c[1] + '</span><time>' + fmt(c[0]) + '</time></button></li>'; }).join('');
   var btns = [].slice.call(ol.querySelectorAll('button'));
   var seek = function (t) { try { v.currentTime = t; } catch (e) {} };
+  // Silent loop while on screen; play restarts it from the top with sound.
+  var still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var preview = function () { if (still) return; v.muted = true; v.setAttribute('muted', ''); v.loop = true; v.play().catch(function () {}); };
+  if (!still) {
+    v.preload = 'auto';
+    new IntersectionObserver(function (en) { if (box.classList.contains('on')) return; if (en[0].isIntersecting) preview(); else v.pause(); }, { threshold: .35 }).observe(box);
+  }
   var start = function (t) {
-    box.classList.add('on'); v.controls = true;
-    if (typeof t === 'number') {
+    box.classList.add('on'); v.controls = true; v.loop = false; v.muted = false; v.removeAttribute('muted');
+    if (typeof t !== 'number') t = 0;
+    {
       if (v.readyState >= 1) seek(t);
       else v.addEventListener('loadedmetadata', function () { seek(t); }, { once: true });
     }
@@ -153,7 +162,7 @@ html,body{background:#000}
     CH.forEach(function (c, n) { if (v.currentTime >= c[0]) cur = n; });
     btns.forEach(function (b, n) { b.setAttribute('aria-current', String(n === cur && box.classList.contains('on'))); });
   });
-  v.addEventListener('ended', function () { v.controls = false; box.classList.remove('on'); btns.forEach(function (b) { b.setAttribute('aria-current', 'false'); }); });
+  v.addEventListener('ended', function () { v.controls = false; box.classList.remove('on'); btns.forEach(function (b) { b.setAttribute('aria-current', 'false'); }); seek(0); preview(); });
 })();
 </script>
 </body>

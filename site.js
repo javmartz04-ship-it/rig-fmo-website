@@ -27,11 +27,22 @@
   $$('#sheet a').forEach(a => a.addEventListener('click', () => setMenu(false)));
 
   // Community video: big play button, then native controls
+  // Plays silently on a loop while it's on screen. Tapping play restarts it from the top with sound.
   const vsl = $('#vsl');
   if (vsl) {
     const v = $('#vslV');
-    $('#vslGo').addEventListener('click', () => { vsl.classList.add('on'); v.controls = true; v.play().catch(() => {}); v.focus(); });
-    v.addEventListener('ended', () => { v.controls = false; vsl.classList.remove('on'); v.load(); });
+    const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const preview = () => { if (still) return; v.muted = true; v.setAttribute('muted', ''); v.loop = true; v.play().catch(() => {}); };
+    if (!still) {
+      v.preload = 'auto';
+      new IntersectionObserver(([e]) => { if (vsl.classList.contains('on')) return; if (e.isIntersecting) preview(); else v.pause(); }, { threshold: .35 }).observe(vsl);
+    }
+    $('#vslGo').addEventListener('click', () => {
+      vsl.classList.add('on'); v.loop = false; v.muted = false; v.removeAttribute('muted'); v.controls = true;
+      try { v.currentTime = 0; } catch (_) {}
+      v.play().catch(() => {}); v.focus();
+    });
+    v.addEventListener('ended', () => { v.controls = false; vsl.classList.remove('on'); try { v.currentTime = 0; } catch (_) {} preview(); });
   }
 
   // Video

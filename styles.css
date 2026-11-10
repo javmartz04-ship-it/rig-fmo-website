@@ -1149,3 +1149,29 @@ em.e{color:var(--gold-ink)}
 @media (max-width:640px){.so{min-height:340px}.so>img.so-a{height:88%;right:-14%}}
 .wy-v .btn{position:relative;z-index:1}
 @media (max-width:640px){.so strong{font-size:40px}.so>img.so-a{height:74%;right:-16%}.so>img.so-bg{width:175%}}
+
+/* v30 (2026-11-09). Every play button sits in the centre (Javier). */
+.wy-h .vsl-go,.rz-v .vsl-go,.rs-vsl .vsl-go{align-items:center;justify-content:center;padding:0}
+.wy-h .vsl-go{background:radial-gradient(60% 75% at 50% 50%,rgba(0,0,0,.3),rgba(0,0,0,.06))}
+.rz-v .vsl-go{background:radial-gradient(26% 42% at 50% 50%,rgba(0,0,0,.55),transparent)}
+.results.dark .v .pl{left:50%;top:50%;bottom:auto;transform:translate(-50%,-50%)}
+.results.dark .v:hover .pl{transform:translate(-50%,-50%) scale(1.08)}
+.rs-vsl .pl{left:50%;top:50%;right:auto;bottom:auto;transform:translate(-50%,-50%)}
+
+/* v30 phone pass. Phone-only: nothing here reaches desktop. */
+@media (max-width:640px){
+  .results.dark .v .pl{left:50%;bottom:auto}
+  .rs-vsl .pl{left:50%;top:50%;right:auto;bottom:auto;transform:translate(-50%,-50%)}
+  .rz-v .vsl-go{padding:0}
+  .foot nav{gap:0}
+  .foot nav a{display:block;padding:10px 0}
+  .results.dark .t-w{min-height:44px;padding-top:4px}
+  .talk-x::before{content:"";position:absolute;inset:-9px}
+  .tp-a{padding:10px 0;margin-top:14px}
+  .tp-f{margin-top:48px;padding-top:30px;border-top:1px solid var(--line-d2)}
+  .rz-c .btn{gap:14px;padding-left:22px;font-size:14.5px;white-space:nowrap}
+  .rz-v{aspect-ratio:1920/810}
+  .rz-v>img{object-position:50% 50%}
+  .rz-v .vsl-p{width:44px}
+  .rz-v .vsl-l{display:none}
+}
