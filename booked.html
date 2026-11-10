@@ -12,7 +12,7 @@ try { if (window.top !== window.self && window.top.location.origin === location.
 (function () {
   var ok = false;
   try { var t = Number(localStorage.getItem('rig_applied')); ok = t > 0 && Date.now() - t < 30 * 864e5; } catch (e) {}
-  if (!ok && window.name !== 'rig_applied') location.replace('index.html');
+  if (!ok && window.name !== 'rig_applied') location.replace('/');
 })();
 </script>
 <link rel="icon" href="assets/favicon.png?v=2">
