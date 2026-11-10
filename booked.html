@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>You're Booked | The Real Insurance Group</title>
+<meta name="robots" content="noindex,nofollow">
+<script>
+/* GHL may open this page inside the calendar frame. Take over the whole window. */
+try { if (window.top !== window.self && window.top.location.origin === location.origin) window.top.location.replace(location.href); } catch (e) {}
+/* Same pass as book.html: only people who applied get here. */
+(function () {
+  var ok = false;
+  try { var t = Number(localStorage.getItem('rig_applied')); ok = t > 0 && Date.now() - t < 30 * 864e5; } catch (e) {}
+  if (!ok && window.name !== 'rig_applied') location.replace('index.html');
+})();
+</script>
+<link rel="icon" href="assets/favicon.png?v=2">
+<link rel="apple-touch-icon" href="assets/favicon.png?v=2">
+<meta name="theme-color" content="#000000">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=Playfair+Display:ital,wght@1,400&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="assets/booked-poster.webp">
+<link rel="stylesheet" href="styles.css?v=47">
+<script async src="https://javmartz04-ship-it.github.io/brandridge-tracker/t.js" data-client="johnny" data-name="Johnny" data-funnel="Main Website"></script>
+<style>
+html,body{background:#000}
+.tk{color:#fff;background:#000;padding:clamp(22px,2.4vw,34px) var(--pad) clamp(64px,6vw,96px)}
+.tk-in{max-width:1320px;margin:0 auto}
+.tk .tk-in{max-width:min(1320px,max(900px,calc((100svh - 350px)*1.778 + 404px)))}
+.tk-logo{display:block;width:clamp(104px,8vw,124px);height:auto;margin:0 auto}
+.tk-h{text-align:center;margin-top:clamp(20px,2.4vw,34px)}
+.tk-e{display:inline-flex;align-items:center;gap:13px;font-size:13.5px;font-weight:600;letter-spacing:.02em;color:var(--on-d)}
+.tk-e::before,.tk-e::after{content:"";width:30px;height:1px;background:var(--gold)}
+.tk h1{margin-top:12px;font-size:clamp(35px,3.6vw,58px);line-height:1.03;text-wrap:balance}
+.tk h1 em.e{display:block;color:var(--gold)}
+.tk-s{max-width:640px;margin:16px auto 0;font-size:clamp(16px,1.25vw,19px);line-height:1.5;color:var(--on-d)}
+.tk-g{display:grid;grid-template-columns:minmax(0,1fr) clamp(300px,27vw,380px);gap:clamp(16px,1.6vw,24px);margin-top:clamp(26px,2.6vw,38px);align-items:start}
+.tk .vsl{box-shadow:0 0 0 1px var(--line-d2),0 40px 90px -30px rgba(0,0,0,.9)}
+.tk .vsl-go{align-items:center;justify-content:center;gap:14px;padding:0 0 0 64%;background:linear-gradient(270deg,rgba(0,0,0,.26),transparent 46%)}
+.tk .vsl-p{width:clamp(70px,6.4vw,100px)}
+.tk-ch{display:flex;flex-direction:column;height:0;min-height:100%;background:#0b0b0b;border:1px solid var(--line-d);border-radius:var(--r)}
+.tk-ch h2{padding:16px 18px 14px;border-bottom:1px solid var(--line-d);font-size:13.5px;font-weight:600;letter-spacing:.02em;line-height:1.3;color:var(--on-d)}
+.tk-ch ol{flex:1;display:flex;flex-direction:column;margin:0;padding:0;list-style:none;overflow:auto}
+.tk-ch li{flex:1;display:flex}
+.tk-ch li + li{border-top:1px solid #1c1c1c}
+.tk-ch button{flex:1;display:grid;grid-template-columns:30px 1fr auto;align-items:center;gap:10px;min-height:40px;padding:5px 18px;text-align:left;font-size:14.5px;font-weight:600;line-height:1.25;color:var(--on-d);transition:background .2s,color .2s}
+.tk-ch button:hover{background:#141414;color:#fff}
+.tk-ch i{font-family:var(--serif);font-size:17px;font-style:italic;color:var(--gold)}
+.tk-ch time{font-size:12.5px;font-weight:500;font-variant-numeric:tabular-nums;color:var(--on-d-m)}
+.tk-ch button[aria-current="true"]{background:#161410;color:#fff;box-shadow:inset 2px 0 0 var(--gold)}
+.tk-ch button[aria-current="true"] time{color:var(--gold)}
+.tk-b{background:#fff;color:var(--ink);padding:clamp(64px,6.4vw,104px) var(--pad)}
+.tk-b-in{max-width:1320px;margin:0 auto;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(32px,5vw,90px);align-items:start}
+.tk-b h2{font-size:clamp(34px,3.6vw,56px)}
+.tk-b h2 em.e{display:block;color:var(--green-2)}
+.tk-b .lead{margin-top:18px;max-width:30em;font-size:clamp(16px,1.2vw,18px);color:var(--body)}
+.tk-l{margin:0;padding:0;list-style:none;border-top:1px solid var(--line)}
+.tk-l li{display:grid;grid-template-columns:48px 1fr;align-items:baseline;padding:20px 0;border-bottom:1px solid var(--line);font-size:clamp(17px,1.35vw,21px);font-weight:600;line-height:1.35}
+.tk-l b{font-family:var(--serif);font-size:20px;font-style:italic;font-weight:400;color:var(--green-2)}
+.tk-m{margin-top:26px;padding-top:18px;border-top:1px solid var(--line);max-width:30em;font-size:15px;line-height:1.5;color:var(--muted)}
+.tk-f{background:#000;color:var(--on-d-m);padding:30px var(--pad) 32px;text-align:center;font-size:12.5px;line-height:1.6}
+@media (max-width:1000px){
+  .tk-g{grid-template-columns:1fr}
+  .tk-ch{height:auto;min-height:0}
+  .tk-ch ol{overflow:visible}
+  .tk-ch button{min-height:46px}
+  .tk-b-in{grid-template-columns:1fr}
+}
+@media (max-width:640px){
+  .tk-e::after{display:none}
+  .tk .vsl-go{gap:7px;padding:0 0 0 62%}
+  .tk .vsl-p{width:56px}
+  .tk .vsl-l{display:none}
+  .tk-ch button{padding:6px 14px;font-size:14px}
+  .tk-l li{grid-template-columns:40px 1fr;padding:17px 0}
+}
+</style>
+</head>
+<body>
+<main>
+<section class="tk">
+  <div class="tk-in">
+    <img class="tk-logo" src="assets/rig-logo-nav.webp" width="392" height="208" alt="The Real Insurance Group">
+    <header class="tk-h">
+      <p class="tk-e">You&rsquo;re Booked</p>
+      <h1>You&rsquo;re On Johnny&rsquo;s Calendar. <em class="e">Watch This Before Your Call.</em></h1>
+      <p class="tk-s">It answers what every agency owner asks before they make a move, and it saves about 20 minutes on your call.</p>
+    </header>
+    <div class="tk-g">
+      <div class="vsl" id="vsl"><video id="vslV" src="assets/video/booked-vsl.mp4" poster="assets/booked-poster.webp" preload="metadata" playsinline width="1920" height="1080"></video><button type="button" class="vsl-go" id="vslGo" aria-label="Play the video, 7 minutes"><span class="vsl-p"><i></i><i></i><b><svg viewBox="0 0 12 12" fill="currentColor"><path d="M2 1l9 5-9 5z"/></svg></b></span><span class="vsl-l">Watch Before Your Call <small>7 Min</small></span></button></div>
+      <nav class="tk-ch" aria-label="Video chapters">
+        <h2>Jump To A Question</h2>
+        <ol id="chapters"></ol>
+      </nav>
+    </div>
+  </div>
+</section>
+
+<section class="tk-b">
+  <div class="tk-b-in">
+    <div>
+      <h2>What To Have Ready <em class="e">For The Call.</em></h2>
+      <p class="lead">Ballpark is fine. This is what Johnny goes through on the call, so have it close.</p>
+      <p class="tk-m">Need to move the time? Use the link in your confirmation text. Don&rsquo;t just skip it.</p>
+    </div>
+    <ol class="tk-l">
+      <li><b>01</b>How many agents you have, and whether they&rsquo;re brokers or LOAs</li>
+      <li><b>02</b>Which carriers you&rsquo;re with</li>
+      <li><b>03</b>How many apps you wrote last year or last month</li>
+      <li><b>04</b>Where your leads come from</li>
+      <li><b>05</b>What you spend a month, and roughly what comes back</li>
+      <li><b>06</b>How you train a new agent today, even if the answer is &ldquo;I do it&rdquo; or &ldquo;I don&rsquo;t&rdquo;</li>
+    </ol>
+  </div>
+</section>
+</main>
+<footer class="tk-f">
+  <p>For licensed insurance professionals only. Not connected with or endorsed by the U.S. government or the federal Medicare program.</p>
+  <p>&copy; 2026 The Real Insurance Group</p>
+</footer>
+<script>
+(function () {
+  // Chapter start times, read off the title cards in the video.
+  var CH = [
+    [38, 'What We’ll Look At On The Call'],
+    [80, 'How Would You Train My Agents?'],
+    [147, 'How Does The Contract Move Work?'],
+    [190, 'What About My Comp And My Book?'],
+    [252, 'Who Pays For The Ads?'],
+    [282, 'What If It Doesn’t Work?'],
+    [309, 'What If My Agency Wants To Leave Later?'],
+    [353, 'Is The Marketing Compliant?'],
+    [369, 'What To Bring']
+  ];
+  var box = document.getElementById('vsl'), v = document.getElementById('vslV'), go = document.getElementById('vslGo'), ol = document.getElementById('chapters');
+  var fmt = function (s) { return Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0'); };
+  ol.innerHTML = CH.map(function (c, n) { return '<li><button type="button" data-t="' + c[0] + '"><i>' + String(n + 1).padStart(2, '0') + '</i><span>' + c[1] + '</span><time>' + fmt(c[0]) + '</time></button></li>'; }).join('');
+  var btns = [].slice.call(ol.querySelectorAll('button'));
+  var seek = function (t) { try { v.currentTime = t; } catch (e) {} };
+  var start = function (t) {
+    box.classList.add('on'); v.controls = true;
+    if (typeof t === 'number') {
+      if (v.readyState >= 1) seek(t);
+      else v.addEventListener('loadedmetadata', function () { seek(t); }, { once: true });
+    }
+    v.play().catch(function () {});
+  };
+  go.addEventListener('click', function () { start(); v.focus(); });
+  btns.forEach(function (b) { b.addEventListener('click', function () { start(Number(b.dataset.t)); if (innerWidth <= 1000) box.scrollIntoView({ behavior: 'smooth', block: 'center' }); }); });
+  v.addEventListener('timeupdate', function () {
+    var cur = -1;
+    CH.forEach(function (c, n) { if (v.currentTime >= c[0]) cur = n; });
+    btns.forEach(function (b, n) { b.setAttribute('aria-current', String(n === cur && box.classList.contains('on'))); });
+  });
+  v.addEventListener('ended', function () { v.controls = false; box.classList.remove('on'); btns.forEach(function (b) { b.setAttribute('aria-current', 'false'); }); });
+})();
+</script>
+</body>
+</html>
