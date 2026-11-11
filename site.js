@@ -19,6 +19,14 @@
   // Nav clears over the hero, solid after
   const nav = $('#nav');
   new IntersectionObserver(([e]) => nav.classList.toggle('solid', !e.isIntersecting)).observe($('#sent'));
+  // Slides away while reading down, comes back the moment you scroll up.
+  let lastY = scrollY;
+  addEventListener('scroll', () => {
+    const y = scrollY, d = y - lastY;
+    if (Math.abs(d) < 6) return;
+    nav.classList.toggle('away', d > 0 && y > 480 && !nav.contains(document.activeElement));
+    lastY = y;
+  }, { passive: true });
 
   // Menu
   const root = document.documentElement, burger = $('#burger');
