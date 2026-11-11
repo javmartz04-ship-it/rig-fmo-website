@@ -1279,3 +1279,25 @@ em.e{color:var(--gold-ink)}
 }
 /* Home, Partnership photo: Johnny's studio portrait */
 .pt-studio img{object-position:50% 18%}
+
+/* v34 (2026-11-11). Every-screen pass. Each rule is scoped to the sizes it fixes; 1280px and wider are untouched. */
+/* Nav links: larger tap area, same look */
+.nav ul a{position:relative}
+.nav ul a::after{content:"";position:absolute;inset:-14px -9px}
+/* Landscape tablets and small laptops: Meet Johnny text no longer runs under his photo */
+@media (min-width:1001px) and (max-width:1240px){
+  .a-in>*{max-width:46%}
+  .a-in>h2{max-width:50%}
+  .a-photo{width:52%}
+}
+/* Tablets: thumb-sized links, and the studio portrait keeps Johnny's whole head */
+@media (max-width:1000px){
+  .foot nav{gap:0}
+  .foot nav a{display:block;padding:10px 0}
+  .results.dark .t-w{min-height:44px;padding-top:4px}
+  .tp-a{padding:10px 0;margin-top:14px}
+  .wy-alt a{display:inline-block;padding:12px 0}
+}
+@media (min-width:641px) and (max-width:1000px){
+  .pt-studio{aspect-ratio:4/5;min-height:0;max-width:520px}
+}
